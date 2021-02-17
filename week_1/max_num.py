@@ -17,18 +17,34 @@ for num in num_list:
 print(f"최댓값은 {max_num}")
 
 
-# 방법 3 - 부분 버블정렬
+# 방법 3
 length = len(num_list)
-idx = 0
-while idx + 1 < length:
-    if num_list[idx] > num_list[idx+1]:
-        num_list[idx], num_list[idx+1] = num_list[idx+1], num_list[idx]
-    idx += 1
+for i in range(length):
+    tmp_max = num_list[i]
+    is_find = False
+    for j in range(length):
+        if num_list[j] > tmp_max:
+            break
+        elif j == length -1:
+            is_find = True
+            break
+    if is_find:
+        break
+print(f"최댓값은 {tmp_max}")
+
+
+# 방법 4 - 부분 버블정렬
+length = len(num_list)
+i = 0
+while (i + 1) < length:
+    if num_list[i] > num_list[i+1]:
+        num_list[i], num_list[i+1] = num_list[i+1], num_list[i]
+    i += 1
 max_num = num_list[length-1]
 print(f"최댓값은 {max_num}")
 
 
-# 방법 4
+# 방법 5
 num_list.sort(reverse=True)
 max_num = num_list[0]
 print(f"최댓값은 {max_num}")
