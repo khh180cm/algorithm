@@ -33,7 +33,19 @@ for i in range(length):
 print(f"최댓값은 {tmp_max}")
 
 
-# 방법 4 - 부분 버블정렬
+# 방법 4
+max_num = float("-inf")
+for num in num_list:
+    for compare_num in num_list:
+        if compare_num > num:
+            break
+    else:
+        max_num = num
+        break
+print(f"최댓값은 {max_num}")
+
+
+# 방법 5 - 부분 버블정렬
 length = len(num_list)
 i = 0
 while (i + 1) < length:
@@ -44,7 +56,7 @@ max_num = num_list[length-1]
 print(f"최댓값은 {max_num}")
 
 
-# 방법 5
+# 방법 6
 num_list.sort(reverse=True)
 max_num = num_list[0]
 print(f"최댓값은 {max_num}")
