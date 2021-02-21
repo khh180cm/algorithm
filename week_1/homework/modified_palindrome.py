@@ -1,37 +1,40 @@
+import unittest
 # 펠린드롬 변형문제
-# input_num = "00010000001"
-input_num = "0100"
-# input_num = "1011"
 
 
 def find_count_to_turn_out_to_all_zero_or_all_one(string):
-    """
-    :param string: 0 또는 1로 이뤄진 문자열
-    :return: 0을 포함한 양의 정수
-            전부 1 또는 전부 0으로 만들기 위한 최소 변환 횟수
-    """
-
-    count_to_ones = 0
     count_to_zeros = 0
-    for idx in range(len(string)-1):
-        if string[idx] == "0":
-            if string[idx] != string[idx+1]:
+    count_to_ones = 0
+
+    if string[0] == '0':
+        count_to_ones += 1
+    else:
+        count_to_zeros += 1
+
+    for i in range(len(string) - 1):
+        if string[i] != string[i + 1]:
+            if string[i + 1] == '0':
                 count_to_ones += 1
             else:
-                if len(string) - 1 == idx + 1:
-                    count_to_ones += 1
-                else:
-                    count_to_zeros += 1
-        else:
-            if string[idx] != string[idx+1]:
                 count_to_zeros += 1
-            else:
-                if len(string) - 1 == idx + 1:
-                    count_to_zeros += 1
-                else:
-                    count_to_ones += 1
-    return min(count_to_zeros, count_to_ones)
+
+    return min(count_to_ones, count_to_zeros)
 
 
-res = find_count_to_turn_out_to_all_zero_or_all_one(input_num)
-print(res)
+if __name__ == "__main__":
+    tester = unittest.TestCase()
+    f_input = open("input_value.txt", "r")
+    f_output = open("output_value.txt", "r")
+
+    input_number = f_input.read().splitlines()
+    output_number = f_output.read().splitlines()
+    if input_number:
+        for idx, each in enumerate(input_number):
+            res = find_count_to_turn_out_to_all_zero_or_all_one(each)
+            answer = int(output_number[idx])
+            tester.assertEqual(res, answer)
+        print("Passed!")
+    else:
+        print("Parameter is not defined!")
+    f_input.close()
+    f_output.close()
