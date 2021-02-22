@@ -1,5 +1,5 @@
 """
-LinkedList 클래스
+Linked List 클래스
 """
 
 
