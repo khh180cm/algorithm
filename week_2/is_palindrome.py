@@ -9,13 +9,14 @@ Ex) "가련하시다 사장 집 아들 딸들아 집 장사 다시 하련가"
 
 sentence = "가련하시다 사장 집 아들 딸들아 집 장사 다시 하련가"
 sentence = sentence.replace(" ", "")
+# sentence = "안녕녕안"
 
 
 # 1-1) 재귀 함수 활용
 def is_palindrome_by_recursion_1(string):
     if string[0] != string[-1]:
         return False
-    if len(string) <= 1:
+    if len(string) <= 2:
         return True
     return is_palindrome_by_recursion_1(string[1:-1])
 
