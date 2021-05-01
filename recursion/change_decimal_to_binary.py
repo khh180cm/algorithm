@@ -4,6 +4,9 @@
 
 
 def change_to_binary(decimal):
+    assert type(decimal) == int and decimal >= 0,\
+        'Decimal must be integer with greater than 0'
+
     if decimal <= 1:
         return decimal
     else:
