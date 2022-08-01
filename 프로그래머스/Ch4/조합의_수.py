@@ -23,8 +23,13 @@ print(res)
 
 
 def combi(m: int, n: int) -> int:
-    return f(m) // ((f(m - n)) * f(n))
+    if m == n:
+        return 1
+    elif m <= 0:
+        return 1
+    else:
+        return combi(m - 1, n) + combi(m - 1, n - 1)
 
 
-res = combi(5, 2)
+res = combi(5, 3)
 print(res)
