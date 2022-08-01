@@ -23,7 +23,7 @@ def recur_fibo(N: int) -> int:
     return recur_fibo(N - 1) + recur_fibo(N - 2)
 
 
-N = 30
+N = 35
 
 
 t0 = time.time()
