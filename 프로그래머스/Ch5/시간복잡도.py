@@ -5,9 +5,6 @@ import unittest
 from typing import List
 
 
-L = [54, 26, 93, 17, 77, 31, 43, 55, 20]
-
-
 def insertion_sorting(L: List) -> List:
     length = len(L)
     if length <= 1:
