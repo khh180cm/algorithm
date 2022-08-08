@@ -23,7 +23,7 @@ class LinkedList:
     def __init__(self) -> None:
         self.head = None
         self.tail = None
-        self.len = 0
+        self.node_cnt = 0
 
     def traverse(self) -> List:
         res = []
