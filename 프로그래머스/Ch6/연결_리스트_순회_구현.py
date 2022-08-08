@@ -37,9 +37,10 @@ class LinkedList:
 class 연결리스트_순회_테스트(unittest.TestCase):
     def test_빈_연결리스트는_빈_배열을_리턴한다(self):
         linked_list = LinkedList()
-        res = linked_list.traverse()
+        actual = linked_list.traverse()
+        expected = []
 
-        self.assertEqual(res, [])
+        self.assertEqual(actual, expected)
 
 
 if __name__ == "__main__":
