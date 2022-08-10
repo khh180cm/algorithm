@@ -23,7 +23,6 @@ class LinkedList:
         return res
 
     def insert(self, pos: int, node: Node) -> bool:
-        # if self.head is None:
         if self.node_cnt + 1 < pos:
             return False
         elif self.node_cnt == 0:
@@ -31,7 +30,7 @@ class LinkedList:
             self.tail = node
         elif pos == 1:
             self.head = node
-            node.next = self.tail
+            self.tail = node
         elif 1 < pos < self.node_cnt + 1:
             prev = self.head
             for i in range(pos - 2):
@@ -39,10 +38,8 @@ class LinkedList:
             node.next = prev
             prev.next = node
         else:
-            cur = self.head
-            while cur.next:
-                cur = cur.next
-            cur.next = node
+            prev_tail = self.tail
+            prev_tail.next = node
             self.tail = node
         self.node_cnt += 1
         return True
