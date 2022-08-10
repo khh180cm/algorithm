@@ -14,6 +14,12 @@ class LinkedList:
         self.tail = None
         self.node_cnt = 0
 
+    def __repr__(self):
+        if self.node_cnt == 0:
+            return f"Empty LinkedList"
+        else:
+            return f"LinkedList: {self.traverse()}"
+
     def traverse(self) -> List:
         res = []
         cur = self.head
