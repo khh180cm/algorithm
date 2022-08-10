@@ -57,6 +57,29 @@ class LinkedList:
         self.node_cnt += 1
         return True
 
+    def pop(self, pos: int) -> int:
+        if self.node_cnt == 0:
+            raise IndexError
+        elif self.node_cnt == 1:
+            res = self.head
+            self.head = None
+            self.tail = None
+        elif pos < self.node_cnt:
+            prev = self.head
+            for i in range(pos - 2):
+                prev = prev.next
+            res = prev.next
+            prev.next = prev.next.next
+        else:
+            last = self.head
+            for i in range(pos - 2):
+                last = last.next
+            res = self.tail
+            last.next = None
+            self.tail = last
+        self.node_cnt -= 1
+        return res.data
+
 
 class 연결리스트_삽입_테스트(unittest.TestCase):
     def test_빈_연결리스트에_단일_노드를_삽입한다(self):
