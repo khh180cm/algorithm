@@ -29,29 +29,23 @@ class LinkedList:
         elif self.node_cnt == 0:
             self.head = node
             self.tail = node
-            self.node_cnt += 1
-            return True
         elif pos == 1:
             self.head = node
             node.next = self.tail
-            self.node_cnt += 1
-            return True
         elif 1 < pos < self.node_cnt + 1:
             prev = self.head
             for i in range(pos - 2):
                 prev = prev.next
             node.next = prev
             prev.next = node
-            self.node_cnt += 1
-            return True
         else:
             cur = self.head
             while cur.next:
                 cur = cur.next
             cur.next = node
             self.tail = node
-            self.node_cnt += 1
-            return True
+        self.node_cnt += 1
+        return True
 
 
 class 연결리스트_삽입_테스트(unittest.TestCase):
