@@ -57,18 +57,22 @@ class LinkedList:
         return True
 
     def pop(self, pos: int) -> int:
-        if self.node_cnt == 0:
+        if self.node_cnt == 0 or pos > self.node_cnt:
             raise IndexError
         elif self.node_cnt == 1:
             res = self.head
             self.head = None
             self.tail = None
         elif pos < self.node_cnt:
-            prev = self.head
-            for i in range(pos - 2):
-                prev = prev.next
-            res = prev.next
-            prev.next = prev.next.next
+            if pos == 1:
+                res = self.head
+                self.head = res.next
+            else:
+                prev = self.head
+                for i in range(pos - 2):
+                    prev = prev.next
+                res = prev.next
+                prev.next = prev.next.next
         else:
             last = self.head
             for i in range(pos - 2):
@@ -103,6 +107,50 @@ class 연결리스트_삭제_테스트(unittest.TestCase):
         self.assertEqual(linked_list.head, None)
         self.assertEqual(linked_list.tail, None)
 
+    def test_노드_두_개인_연결_리스트에서_첫_번째_노드를_제거한다(self):
+        node_5 = Node(5)
+        node_6 = Node(6)
+        linked_list = LinkedList()
+        linked_list.insert(1, node_5)
+        linked_list.insert(2, node_6)
+
+        res = linked_list.pop(1)
+
+        self.assertEqual(res, 5)
+        self.assertEqual(linked_list.node_cnt, 1)
+        self.assertEqual(linked_list.traverse(), [6])
+        self.assertEqual(linked_list.head, node_6)
+        self.assertEqual(linked_list.tail, node_6)
+
+    def test_노드_두_개인_연결_리스트에서_두_번째_노드를_제거한다(self):
+        node_5 = Node(5)
+        node_6 = Node(6)
+        linked_list = LinkedList()
+        linked_list.insert(1, node_5)
+        linked_list.insert(2, node_6)
+
+        res = linked_list.pop(2)
+
+        self.assertEqual(res, 6)
+        self.assertEqual(linked_list.node_cnt, 1)
+        self.assertEqual(linked_list.traverse(), [5])
+        self.assertEqual(linked_list.head, node_5)
+        self.assertEqual(linked_list.tail, node_5)
+
+    def test_노드_3개인_연결_리스트에서_첫_노드를_삭제한다(self):
+        node_list = [Node(i) for i in [5, 6, 7]]
+        linked_list = LinkedList()
+        for i in range(len(node_list)):
+            linked_list.insert(i + 1, node_list[i])
+
+        res = linked_list.pop(1)
+
+        self.assertEqual(res, 5)
+        self.assertEqual(linked_list.node_cnt, 2)
+        self.assertEqual(linked_list.traverse(), [6, 7])
+        self.assertEqual(linked_list.head.data, 6)
+        self.assertEqual(linked_list.tail.data, 7)
+
     def test_노드_3개인_연결_리스트에서_중간_노드를_삭제한다(self):
         node_list = [Node(i) for i in [5, 6, 7]]
         linked_list = LinkedList()
@@ -117,6 +165,20 @@ class 연결리스트_삭제_테스트(unittest.TestCase):
         self.assertEqual(linked_list.head.data, 5)
         self.assertEqual(linked_list.tail.data, 7)
 
+    def test_노드_3개인_연결_리스트에서_마지막_노드를_삭제한다(self):
+        node_list = [Node(i) for i in [5, 6, 7]]
+        linked_list = LinkedList()
+        for i in range(len(node_list)):
+            linked_list.insert(i + 1, node_list[i])
+
+        res = linked_list.pop(3)
+
+        self.assertEqual(res, 7)
+        self.assertEqual(linked_list.node_cnt, 2)
+        self.assertEqual(linked_list.traverse(), [5, 6])
+        self.assertEqual(linked_list.head.data, 5)
+        self.assertEqual(linked_list.tail.data, 6)
+
     def test_노드_5개인_연결_리스트에서_마지막_노드를_삭제한다(self):
         node_list = [Node(i) for i in [5, 6, 7, 8, 9]]
         linked_list = LinkedList()
@@ -130,6 +192,15 @@ class 연결리스트_삭제_테스트(unittest.TestCase):
         self.assertEqual(linked_list.traverse(), [5, 6, 7, 8])
         self.assertEqual(linked_list.head.data, 5)
         self.assertEqual(linked_list.tail.data, 8)
+
+    def test_연결_리스트의_길이를_초과하는_인덱스_제거_요청은_할_수_없다(self):
+        node_list = [Node(i) for i in [5, 6, 7, 8, 9]]
+        linked_list = LinkedList()
+        for i in range(len(node_list)):
+            linked_list.insert(i + 1, node_list[i])
+
+        with self.assertRaises(IndexError):
+            linked_list.pop(6)
 
 
 if __name__ == "__main__":
