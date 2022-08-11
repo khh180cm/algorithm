@@ -18,7 +18,9 @@ class LinkedList:
         if self.node_cnt == 0:
             return f"Empty LinkedList"
         else:
-            return f"LinkedList: {self.traverse()}"
+            res = self.traverse()
+            parsed = "->".join([str(i) for i in res])
+            return f"LinkedList: {parsed}"
 
     def traverse(self) -> List:
         res = []
@@ -35,8 +37,12 @@ class LinkedList:
             self.head = node
             self.tail = node
         elif pos == 1:
-            self.head = node
-            self.tail = node
+            if self.node_cnt != 0:
+                node.next = self.head
+                self.head = node
+            else:
+                self.head = node
+                self.tail = node
         elif 1 < pos < self.node_cnt + 1:
             prev = self.head
             for i in range(pos - 2):
@@ -74,7 +80,6 @@ class 연결리스트_삽입_테스트(unittest.TestCase):
     def test_빈_연결_리스트_길이를_초과하는_삽입은_불가하다(self):
         node = Node(5)
         linked_list = LinkedList()
-        print(linked_list.node_cnt)
         res = linked_list.insert(2, node)
 
         self.assertFalse(res)
@@ -86,12 +91,26 @@ class 연결리스트_삽입_테스트(unittest.TestCase):
         linked_list.insert(1, node)
         node = Node(6)
         linked_list.insert(2, node)
-
         node = Node(7)
+        linked_list.insert(3, node)
+
+        node = Node(8)
         res = linked_list.insert(5, node)
 
         self.assertFalse(res)
-        self.assertEqual(linked_list.traverse(), [5, 6])
+        self.assertEqual(linked_list.traverse(), [5, 6, 7])
+
+    def test_연결_리스트의_첫_번째_위치로_연속해서_삽입이_가능하다(self):
+        linked_list = LinkedList()
+        node_list = [Node(i) for i in range(5)]
+        for node in node_list:
+            res = linked_list.insert(1, node)
+            self.assertTrue(res)
+        self.assertEqual(linked_list.node_cnt, 5)
+        self.assertEqual(
+            linked_list.traverse(),
+            sorted([i for i in range(5)], reverse=True),
+        )
 
 
 if __name__ == "__main__":
