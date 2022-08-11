@@ -200,7 +200,10 @@ class 연결리스트_삭제_테스트(unittest.TestCase):
             linked_list.insert(i + 1, node_list[i])
 
         with self.assertRaises(IndexError):
+            linked_list.pop(-1)
+            linked_list.pop(0)
             linked_list.pop(6)
+            linked_list.pop(100)
 
 
 if __name__ == "__main__":
