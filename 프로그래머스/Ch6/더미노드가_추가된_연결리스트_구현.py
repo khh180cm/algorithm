@@ -1,7 +1,3 @@
-from re import I
-from readline import insert_text
-
-
 class Node:
     def __init__(self, data: int) -> None:
         self.data = data
