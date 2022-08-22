@@ -1,6 +1,3 @@
-from this import d
-
-
 class Node:
     def __init__(self, data) -> None:
         self.data = data
