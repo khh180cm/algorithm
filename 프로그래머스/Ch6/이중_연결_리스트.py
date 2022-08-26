@@ -36,6 +36,15 @@ class DoublyLinkedList:
         self.node_cnt += 1
         return True
 
+    def insert_before(self, next: Node, new_node: Node) -> bool:
+        prev = next.prev
+        prev.next = new_node
+        new_node.prev = prev
+        new_node.next = next
+        next.prev = new_node
+        self.node_cnt += 1
+        return True
+
     def get_at(self, pos: int) -> Node:
         if pos < 1 or pos > self.node_cnt + 1:
             raise IndexError
