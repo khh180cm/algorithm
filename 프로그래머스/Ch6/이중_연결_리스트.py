@@ -62,3 +62,19 @@ class DoublyLinkedList:
     def insert_at(self, pos: int, new_node: Node) -> bool:
         prev = self.get_at(pos - 1)
         return self.insert_after(prev, new_node)
+
+    def pop_after(self, prev: Node) -> int:
+        res = prev.next.data
+        next = prev.next.next
+        prev.next = next
+        next.prev = prev
+        self.node_cnt -= 1
+        return res
+
+    def pop_before(self, next: Node) -> int:
+        res = next.prev.data
+        prev = next.prev.prev
+        prev.next = next
+        next.prev = prev
+        self.node_cnt -= 1
+        return res
