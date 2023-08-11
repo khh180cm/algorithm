@@ -21,6 +21,7 @@ my_string result
 
 my_string = "3 - 4"
 
+
 # 방법 1
 def solution1(my_string):
     if "+" in my_string:
@@ -30,12 +31,15 @@ def solution1(my_string):
         first, second = my_string.split(" - ")
         return int(first) - int(second)
 
+
 res = solution1(my_string)
 print(res)
+
 
 # 방법 2
 def solution2(my_string):
     return sum(int(i) for i in my_string.replace("- ", "+-").split("+"))
+
 
 res = solution2(my_string)
 print(res)
@@ -57,6 +61,7 @@ def solution3(my_string):
             else:
                 res = int(char)
     return res
+
 
 res = solution3(my_string)
 print(res)

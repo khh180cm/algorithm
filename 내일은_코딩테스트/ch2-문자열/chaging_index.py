@@ -18,6 +18,7 @@ my_string    num1 num2 result
 
 my_string = "I love you"
 
+
 # 방법 1
 def solution(my_string, num1, num2):
     my_string = list(my_string)
@@ -31,7 +32,13 @@ print(solution(my_string, 3, 6))
 # 방법 2
 def solution(my_string, num1, num2):
     small, big = sorted((num1, num2))
-    return my_string[:small] + my_string[big] + my_string[small+1:big] + my_string[small] + my_string[big+1:]
+    return (
+        my_string[:small]
+        + my_string[big]
+        + my_string[small + 1 : big]
+        + my_string[small]
+        + my_string[big + 1 :]
+    )
 
 
 print(solution(my_string, 3, 6))

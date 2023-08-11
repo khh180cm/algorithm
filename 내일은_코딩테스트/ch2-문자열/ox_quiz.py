@@ -21,15 +21,19 @@ quiz                                                       result
 
 quiz_list = ["19 - 6 = 13", "5 + 66 = 71", "5 - 15 = 63", "3 - 1 = 2"]
 
+
 def solution1(quiz_list):
     ans = []
     for quiz in quiz_list:
         quiz_not_resolved, expected = quiz.split("=")
-        if sum(int(i) for i in quiz_not_resolved.replace("- ", "+ -").split("+")) == int(expected):
+        if sum(
+            int(i) for i in quiz_not_resolved.replace("- ", "+ -").split("+")
+        ) == int(expected):
             ans.append("O")
         else:
             ans.append("X")
     return ans
+
 
 print(solution1(quiz_list))
 

@@ -8,8 +8,10 @@ import time
 N = 100000
 FIND = 50000
 
+
 def find_value_in_data(find, nums):
     return find in nums
+
 
 nums_list = list(range(N))
 nums_dict = {i: i for i in range(N)}

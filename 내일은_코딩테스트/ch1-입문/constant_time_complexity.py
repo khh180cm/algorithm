@@ -10,6 +10,7 @@ def constant_time_algorithm(items):
     result = items[5] * items[5]
     print(result)
 
+
 constant_time_algorithm(list(range(100)))
 
 

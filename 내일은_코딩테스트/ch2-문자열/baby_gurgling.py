@@ -29,9 +29,9 @@ def solution(given_list):
                 if i == j == k:
                     talkable.add(i)
                 elif (i == j) and (j != k):
-                    talkable.add(i+k)
+                    talkable.add(i + k)
                 elif (i != j) and (j != k) and (k != i):
-                    talkable.add(i+j+k)
+                    talkable.add(i + j + k)
     for i in given_list:
         if i in talkable:
             cnt += 1
@@ -40,7 +40,6 @@ def solution(given_list):
 
 res = solution(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])
 print(res)
-
 
 
 def solution2(given_list):
@@ -55,10 +54,10 @@ def solution2(given_list):
             if i == j:
                 continue
             for k in words:
-                talkable.add(i+j)
+                talkable.add(i + j)
                 if j == k:
                     continue
-                talkable.add(i+j+k)
+                talkable.add(i + j + k)
     for i in given_list:
         if i in talkable:
             cnt += 1
@@ -67,7 +66,6 @@ def solution2(given_list):
 
 res = solution2(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])
 print(res)
-
 
 
 def solution3(given_list):
@@ -79,7 +77,6 @@ def solution3(given_list):
         if not given.strip():
             cnt += 1
     return cnt
-
 
 
 res = solution3(["ayaye", "uuuma", "ye", "yemawoo", "ayaa"])

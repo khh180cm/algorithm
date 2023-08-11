@@ -21,6 +21,7 @@ my_string       result
 # 방법 1
 my_string = "1a2b3c4d123Z"
 
+
 def solution(my_string):
     ans = []
     last_char = ""
@@ -35,6 +36,7 @@ def solution(my_string):
         return sum(int(i) for i in ans)
     else:
         return 0
+
 
 print(solution(my_string))
 
@@ -52,13 +54,15 @@ def solution(my_string):
                 temp = ""
     return ans
 
+
 print(solution(my_string))
 
 
 # 방법 3
 def solution(my_string):
-    my_string = "".join([char if char.isdigit() else " "  for char in my_string])
+    my_string = "".join([char if char.isdigit() else " " for char in my_string])
     return sum(int(char) for char in my_string.split())
+
 
 print(solution(my_string))
 
@@ -67,7 +71,8 @@ print(solution(my_string))
 def solution(my_string):
     import re
 
-    my_string = re.findall(r'[0-9]+', my_string)
+    my_string = re.findall(r"[0-9]+", my_string)
     return sum(int(char) for char in my_string)
+
 
 print(solution(my_string))

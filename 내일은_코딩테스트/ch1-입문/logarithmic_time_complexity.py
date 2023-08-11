@@ -7,6 +7,7 @@
 find = -1
 ordered_list = list(range(10))
 
+
 def find_value(find, data):
     mid_idx = len(data) // 2
 
@@ -15,20 +16,21 @@ def find_value(find, data):
         if data[mid_idx] > find:
             return find_value(find, data[:mid_idx])
         elif data[mid_idx] < find:
-            return find_value(find, data[mid_idx+1:])
+            return find_value(find, data[mid_idx + 1 :])
         else:
             return True
     except IndexError:
         return False
 
     # 방법 2
-    while(data):
+    while data:
         if data[mid_idx] > find:
             return find_value(find, data[:mid_idx])
         elif data[mid_idx] < find:
-            return find_value(find, data[mid_idx+1:])
+            return find_value(find, data[mid_idx + 1 :])
         else:
             return True
     return False
+
 
 print(find_value(find, ordered_list))
